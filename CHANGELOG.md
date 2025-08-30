@@ -2,80 +2,80 @@
 
 All notable changes to the [ChatGPT](https://marketplace.visualstudio.com/items?itemName=genieai.chatgpt-vscode) extension will be documented in this file.
 
-## [V0.0.14] 🧠 Reasoning Effort追加・モデル刷新・コンテキスト拡大 - 2025-08-31
+## [V0.0.14] 🧠 Reasoning Effort, Model Refresh, Context Expansion - 2025-08-31
 
 ### package.json
-- `Model` の選択肢を更新しました。現在、次のモデルを指定できます: `gpt-5`, `gpt-5-mini`, `gpt-4.1`, `gpt-4.1-mini`, `gpt-4o`, `o4-mini`, `o3`  
-- `Reasoning Effort`が追加されました。
+- Updated `genieai.openai.model` choices: `gpt-5`, `gpt-5-mini`, `gpt-4.1`, `gpt-4.1-mini`, `gpt-4o`, `o4-mini`, `o3`.
+- Added `genieai.openai.reasoningEffort` (minimal, low, medium, high).
 <p align="left"><img src="./images/add_reasoning_effort.png" alt="reasoning_effort"></p>  
 
 
 ### extension.js
-#### 1\. 推論モデルの判定ロジックの変更
+#### 1. Reasoning model detection logic
 
-どのモデルを「推論モデル」として扱うかを決めるロジックが変更されました。
+Changed how models are detected as reasoning models.
 
-  * **変更前:**
+  * **Before:**
     ```javascript
     get isReasoningModel() {
         return this.model?.startsWith("o1");
     }
     ```
-  * **変更後:**
+  * **After:**
     ```javascript
     get isReasoningModel() {
         return /^(gpt-5|o[1-9])/i.test(this.model);
     }
     ```
-    **効果:** モデル名が`gpt-5`またはo+数字（例: `o1`, `o3`）で始まる場合に、推論モデルとして認識されます。
+    **Effect:** Models starting with `gpt-5` or `o` + digit (e.g., `o1`, `o3`) are recognized as reasoning models.
 
-#### 2\. 推論モデル使用時のReasoning Effort（推論強度）の送信とtemperatureの自動設定
+#### 2. Send `reasoning_effort` and auto-set `temperature` for reasoning models
 
-  * **変更前:**
+  * **Before:**
     ```javascript
     s = Be.workspace.getConfiguration("genieai").get("openai.apiBaseUrl");
     ```
-  * **変更後:**
+  * **After:**
     ```javascript
     s = Be.workspace.getConfiguration("genieai").get("openai.apiBaseUrl"),
     e = Be.workspace.getConfiguration("genieai").get("openai.reasoningEffort");
     // ... 
-    // prepareConversation関数内でcompletionParamsを宣言した直後に以下のif文を追加。
+    // In prepareConversation, right after declaring completionParams, add:
     if (this.isReasoningModel) {
       d.completionParams.temperature = 1;
       d.completionParams["reasoning_effort"] = e;
     }
     ```
-    **効果:** Reasoning EffortをAPIに送信します。`o3`や`gpt-5`などの推論モデル使用時は、手動設定なしで`temperature`が自動的に1になります。推論モデル以外では従来どおり設定値が使用されます。
+    **Effect:** Sends `reasoning_effort` to the API. When using reasoning models like `o3` or `gpt-5`, `temperature` is automatically set to `1` without manual changes. Non-reasoning models continue to use your configured value.
 
-#### 3\. コンテキスト長の拡大（過去メッセージ参照数）
+#### 3. Increase context length (past message count)
 
-AIが記憶できる会話の文脈が短かった問題を解決するため、APIに送信する過去のメッセージ数が拡張されました。
+Expanded the number of past messages sent to the API to improve conversational context.
 
-  * **変更前:**
+  * **Before:**
     ```javascript
     do {
         // ... 
     } while (i.length <= 3); // iはメッセージの配列
     ```
-  * **変更後:**
+  * **After:**
     ```javascript
     do {
         // ...
     } while (i.length <= 64);
     ```
-    **効果:** これまで直近3件のやり取りしか記憶できませんでしたが、最大64件まで文脈に含めるようになり、「記憶が短い」と感じられた問題が解消されました。
+    **Effect:** Context now includes up to 64 past messages (from 3), alleviating issues with short memory.
 
-#### 4\. 設定変更の監視に`reasoningEffort`を追加
+#### 4. Watch `reasoningEffort` in configuration changes
 
-  * **変更前:**
+  * **Before:**
     ```javascript
     (W.affectsConfiguration("genieai.openai.apiBaseUrl") ||
     // ...
     W.affectsConfiguration("genieai.openai.top_p") ||
     W.affectsConfiguration("genieai.azure.url")) && a.prepareConversation(true)
     ```
-  * **変更後:**
+  * **After:**
     ```javascript
     (W.affectsConfiguration("genieai.openai.apiBaseUrl") ||
     // ...
@@ -83,7 +83,10 @@ AIが記憶できる会話の文脈が短かった問題を解決するため、
     W.affectsConfiguration("genieai.openai.reasoningEffort") || // New!
     W.affectsConfiguration("genieai.azure.url")) && a.prepareConversation(true)
     ```
-    **効果:** 設定で`Reasoning Effort`を変更した時に、次の会話から変更が反映されます。
+    **Effect:** Changes to `genieai.openai.reasoningEffort` take effect starting with the next conversation.
+
+### How do I update?
+Download latest files: `package.json` and `extension.js` then overwrite.
 
 ## [V0.0.13] 🪄 Generate commit message is now in navigation - 2024-09-15
 
