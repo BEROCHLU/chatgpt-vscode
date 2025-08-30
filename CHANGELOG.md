@@ -4,13 +4,13 @@ All notable changes to the [ChatGPT](https://marketplace.visualstudio.com/items?
 
 ## [V0.0.14] 🧠 Reasoning Effort, Model Refresh, Context Expansion - 2025-08-31
 
-### package.json
+### `package.json`
 - Updated `genieai.openai.model` choices: `gpt-5`, `gpt-5-mini`, `gpt-4.1`, `gpt-4.1-mini`, `gpt-4o`, `o4-mini`, `o3`.
 - Added `genieai.openai.reasoningEffort` (minimal, low, medium, high).
 <p align="left"><img src="./images/add_reasoning_effort.png" alt="reasoning_effort"></p>  
 
 
-### extension.js
+### `extension.js`
 #### 1. Reasoning model detection logic
 
 Changed how models are detected as reasoning models.
@@ -56,7 +56,7 @@ Expanded the number of past messages sent to the API to improve conversational c
     ```javascript
     do {
         // ... 
-    } while (i.length <= 3); // iはメッセージの配列
+    } while (i.length <= 3); // i is message array
     ```
   * **After:**
     ```javascript
@@ -86,7 +86,7 @@ Expanded the number of past messages sent to the API to improve conversational c
     **Effect:** Changes to `genieai.openai.reasoningEffort` take effect starting with the next conversation.
 
 ### How do I update?
-Download latest files: `package.json` and `extension.js` then overwrite.
+Download two files and overwrite: `package.json` and `out/extension.js`.
 
 ## [V0.0.13] 🪄 Generate commit message is now in navigation - 2024-09-15
 
