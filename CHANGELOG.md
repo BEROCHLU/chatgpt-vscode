@@ -2,11 +2,13 @@
 
 All notable changes to the [ChatGPT](https://marketplace.visualstudio.com/items?itemName=genieai.chatgpt-vscode) extension will be documented in this file.
 
-## [V0.0.14]
+## [V0.0.14] 🧠 Reasoning Effort追加・モデル刷新・コンテキスト拡大 - 2025-08-31
 
 ### package.json
+- `Model` の選択肢を更新しました。現在、次のモデルを指定できます: `gpt-5`, `gpt-5-mini`, `gpt-4.1`, `gpt-4.1-mini`, `gpt-4o`, `o4-mini`, `o3`  
 - `Reasoning Effort`が追加されました。
-<img src="./images/add_reasoning_effort.png" alt="reasoning_effort">
+<p align="left"><img src="./images/add_reasoning_effort.png" alt="reasoning_effort"></p>  
+
 
 ### extension.js
 #### 1\. 推論モデルの判定ロジックの変更
@@ -25,9 +27,9 @@ All notable changes to the [ChatGPT](https://marketplace.visualstudio.com/items?
         return /^(gpt-5|o[1-9])/i.test(this.model);
     }
     ```
-    **効果:** これにより、モデル名が`gpt-5`または`o`+数字（例: `o1`, `o3`, `o9`）で始まる場合に、推論モデルとして認識されるようになりました。
+    **効果:** モデル名が`gpt-5`またはo+数字（例: `o1`, `o3`）で始まる場合に、推論モデルとして認識されます。
 
-#### 2\. 推論モデル使用時のReasoning Effortの送信とtemperatureの自動設定
+#### 2\. 推論モデル使用時のReasoning Effort（推論強度）の送信とtemperatureの自動設定
 
   * **変更前:**
     ```javascript
@@ -44,9 +46,9 @@ All notable changes to the [ChatGPT](https://marketplace.visualstudio.com/items?
       d.completionParams["reasoning_effort"] = e;
     }
     ```
-    **効果:** これで、`Reasoning Effort`を送信できるようになりました。更に`o3`や`gpt-5`などの推論モデルを使用する際に、手動で設定を変更しなくても自動的に`temperature`が`1`になります。推論モデル以外では`temperature`はこれまで通り設定した値が使用されます。
+    **効果:** Reasoning EffortをAPIに送信します。`o3`や`gpt-5`などの推論モデル使用時は、手動設定なしで`temperature`が自動的に1になります。推論モデル以外では従来どおり設定値が使用されます。
 
-#### 3\. 会話履歴（入力長）の拡張
+#### 3\. コンテキスト長の拡大（過去メッセージ参照数）
 
 AIが記憶できる会話の文脈が短かった問題を解決するため、APIに送信する過去のメッセージ数が拡張されました。
 
@@ -62,7 +64,7 @@ AIが記憶できる会話の文脈が短かった問題を解決するため、
         // ...
     } while (i.length <= 64);
     ```
-    **効果:** これまで直近3件ほどのやり取りしか記憶できませんでしたが、最大64件まで文脈に含めるようになり、「記憶が短い」と感じられた問題が解消されているはずです。
+    **効果:** これまで直近3件のやり取りしか記憶できませんでしたが、最大64件まで文脈に含めるようになり、「記憶が短い」と感じられた問題が解消されました。
 
 #### 4\. 設定変更の監視に`reasoningEffort`を追加
 
