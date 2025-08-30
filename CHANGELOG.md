@@ -10,7 +10,7 @@ All notable changes to the [ChatGPT](https://marketplace.visualstudio.com/items?
 <p align="left"><img src="./images/add_reasoning_effort.png" alt="reasoning_effort"></p>  
 
 
-### `extension.js`
+### `out/extension.js`
 #### 1. Reasoning model detection logic
 
 Changed how models are detected as reasoning models.
