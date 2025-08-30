@@ -2,6 +2,87 @@
 
 All notable changes to the [ChatGPT](https://marketplace.visualstudio.com/items?itemName=genieai.chatgpt-vscode) extension will be documented in this file.
 
+## [V0.0.14]
+
+### package.json
+- `Reasoning Effort`が追加されました。
+<img src="./images/add_reasoning_effort.png" alt="reasoning_effort">
+
+### extension.js
+#### 1\. 推論モデルの判定ロジックの変更
+
+どのモデルを「推論モデル」として扱うかを決めるロジックが変更されました。
+
+  * **変更前:**
+    ```javascript
+    get isReasoningModel() {
+        return this.model?.startsWith("o1");
+    }
+    ```
+  * **変更後:**
+    ```javascript
+    get isReasoningModel() {
+        return /^(gpt-5|o[1-9])/i.test(this.model);
+    }
+    ```
+    **効果:** これにより、モデル名が`gpt-5`または`o`+数字（例: `o1`, `o3`, `o9`）で始まる場合に、推論モデルとして認識されるようになりました。
+
+#### 2\. 推論モデル使用時のReasoning Effortの送信とtemperatureの自動設定
+
+  * **変更前:**
+    ```javascript
+    s = Be.workspace.getConfiguration("genieai").get("openai.apiBaseUrl");
+    ```
+  * **変更後:**
+    ```javascript
+    s = Be.workspace.getConfiguration("genieai").get("openai.apiBaseUrl"),
+    e = Be.workspace.getConfiguration("genieai").get("openai.reasoningEffort");
+    // ... 
+    // prepareConversation関数内でcompletionParamsを宣言した直後に以下のif文を追加。
+    if (this.isReasoningModel) {
+      d.completionParams.temperature = 1;
+      d.completionParams["reasoning_effort"] = e;
+    }
+    ```
+    **効果:** これで、`Reasoning Effort`を送信できるようになりました。更に`o3`や`gpt-5`などの推論モデルを使用する際に、手動で設定を変更しなくても自動的に`temperature`が`1`になります。推論モデル以外では`temperature`はこれまで通り設定した値が使用されます。
+
+#### 3\. 会話履歴（入力長）の拡張
+
+AIが記憶できる会話の文脈が短かった問題を解決するため、APIに送信する過去のメッセージ数が拡張されました。
+
+  * **変更前:**
+    ```javascript
+    do {
+        // ... 
+    } while (i.length <= 3); // iはメッセージの配列
+    ```
+  * **変更後:**
+    ```javascript
+    do {
+        // ...
+    } while (i.length <= 64);
+    ```
+    **効果:** これまで直近3件ほどのやり取りしか記憶できませんでしたが、最大64件まで文脈に含めるようになり、「記憶が短い」と感じられた問題が解消されているはずです。
+
+#### 4\. 設定変更の監視に`reasoningEffort`を追加
+
+  * **変更前:**
+    ```javascript
+    (W.affectsConfiguration("genieai.openai.apiBaseUrl") ||
+    // ...
+    W.affectsConfiguration("genieai.openai.top_p") ||
+    W.affectsConfiguration("genieai.azure.url")) && a.prepareConversation(true)
+    ```
+  * **変更後:**
+    ```javascript
+    (W.affectsConfiguration("genieai.openai.apiBaseUrl") ||
+    // ...
+    W.affectsConfiguration("genieai.openai.top_p") ||
+    W.affectsConfiguration("genieai.openai.reasoningEffort") || // New!
+    W.affectsConfiguration("genieai.azure.url")) && a.prepareConversation(true)
+    ```
+    **効果:** 設定で`Reasoning Effort`を変更した時に、次の会話から変更が反映されます。
+
 ## [V0.0.13] 🪄 Generate commit message is now in navigation - 2024-09-15
 
 - Made adjustment to support o1\* models.
