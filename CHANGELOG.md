@@ -46,11 +46,11 @@ Changed how models are detected as reasoning models.
       d.completionParams["reasoning_effort"] = e;
     }
     ```
-    **Effect:** Sends `reasoning_effort` to the API. When using reasoning models like `o3` or `gpt-5`, `temperature` is automatically set to `1` without manual changes. Non-reasoning models continue to use your configured value.
+    **Effect:** Sends `reasoning_effort` to the API. Furthermore, when using reasoning models such as `o3` or `gpt-5`, `temperature` is automatically set to `1` without requiring manual changes. For non-reasoning models, the `temperature` you have set will continue to be used as before.
 
 #### 3. Increase context length (past message count)
 
-Expanded the number of past messages sent to the API to improve conversational context.
+To address the issue of the AI having a short conversational context, the number of past messages sent to the API has been increased.
 
   * **Before:**
     ```javascript
@@ -64,7 +64,7 @@ Expanded the number of past messages sent to the API to improve conversational c
         // ...
     } while (i.length <= 64);
     ```
-    **Effect:** Context now includes up to 64 past messages (from 3), alleviating issues with short memory.
+    **Effect:** Context now includes up to 64 past messages (from 3), resolving the issue where the AI’s memory felt “short.”
 
 #### 4. Watch `reasoningEffort` in configuration changes
 
@@ -83,7 +83,7 @@ Expanded the number of past messages sent to the API to improve conversational c
     W.affectsConfiguration("genieai.openai.reasoningEffort") || // New!
     W.affectsConfiguration("genieai.azure.url")) && a.prepareConversation(true)
     ```
-    **Effect:** Changes to `genieai.openai.reasoningEffort` take effect starting with the next conversation.
+    **Effect:** When `Reasoning Effort` is changed in the settings, the change will take effect from the next conversation.
 
 ### How do I update?
 
