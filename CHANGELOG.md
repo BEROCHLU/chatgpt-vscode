@@ -2,7 +2,7 @@
 
 All notable changes to the [ChatGPT](https://marketplace.visualstudio.com/items?itemName=genieai.chatgpt-vscode) extension will be documented in this file.
 
-## [V0.0.14] 🧠 Reasoning Effort, Model Refresh, Context Expansion - 2025-08-31
+## [V0.0.13-unofficial.1] 🧠 Reasoning Effort, Model Refresh, Context Expansion - 2025-08-31
 
 ### `package.json`
 - Updated `genieai.openai.model` choices: `gpt-5`, `gpt-5-mini`, `gpt-5-chat-latest`, `gpt-4.1`, `gpt-4.1-mini`, `gpt-4o`, `o4-mini`, `o3`.
