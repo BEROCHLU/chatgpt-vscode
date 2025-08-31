@@ -85,7 +85,7 @@ To address the issue of the AI having a short conversational context, the number
     ```
     **Effect:** When `Reasoning Effort` is changed in the settings, the change will take effect from the next conversation.
 
-### How do I update?
+### How do I apply this patch?
 
 This is an unofficial patch release from a fork. After installing the extension from the Marketplace, open your VS Code extensions folder (Command Palette: "Extensions: Open Extensions Folder").
 
