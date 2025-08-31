@@ -5,7 +5,7 @@ All notable changes to the [ChatGPT](https://marketplace.visualstudio.com/items?
 ## [V0.0.14] 🧠 Reasoning Effort, Model Refresh, Context Expansion - 2025-08-31
 
 ### `package.json`
-- Updated `genieai.openai.model` choices: `gpt-5`, `gpt-5-mini`, `gpt-4.1`, `gpt-4.1-mini`, `gpt-4o`, `o4-mini`, `o3`.
+- Updated `genieai.openai.model` choices: `gpt-5`, `gpt-5-mini`, `gpt-5-chat-latest`, `gpt-4.1`, `gpt-4.1-mini`, `gpt-4o`, `o4-mini`, `o3`.
 - Added `genieai.openai.reasoningEffort` (minimal, low, medium, high).
 <p align="left"><img src="./images/add_reasoning_effort.png" alt="reasoning_effort"></p>  
 
@@ -24,10 +24,10 @@ Changed how models are detected as reasoning models.
   * **After:**
     ```javascript
     get isReasoningModel() {
-        return /^(gpt-5|o[1-9])/i.test(this.model);
+        return /^(gpt-5(?!-chat)|o[1-9])/i.test(this.model);
     }
     ```
-    **Effect:** Models starting with `gpt-5` or `o` + digit (e.g., `o1`, `o3`) are recognized as reasoning models.
+    **Effect:** Models starting with `gpt-5` or `o` + digit (e.g., `o1`, `o3`) are recognized as reasoning models, excluding `gpt-5-chat-latest`.
 
 #### 2. Send `reasoning_effort` and auto-set `temperature` for reasoning models
 
