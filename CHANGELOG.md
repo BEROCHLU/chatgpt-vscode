@@ -62,9 +62,9 @@ To address the issue of the AI having a short conversational context, the number
     ```javascript
     do {
         // ...
-    } while (i.length <= 64);
+    } while (i.length <= 32);
     ```
-    **Effect:** Context now includes up to 64 past messages (from 3), resolving the issue where the AI’s memory felt “short.”
+    **Effect:** Context now includes up to 32 past messages (from 3), resolving the issue where the AI’s memory felt “short.”
 
 #### 4. Watch `reasoningEffort` in configuration changes
 
