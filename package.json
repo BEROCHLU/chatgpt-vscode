@@ -4,7 +4,7 @@
 	"displayName": "ChatGPT - Genie AI",
 	"icon": "images/ai-logo.png",
 	"description": "Your best AI pair programmer. Save conversations and continue any time. A Visual Studio Code - ChatGPT Integration. Supports, GPT-4o GPT-4 Turbo, GPT3.5 Turbo, GPT3 and Codex models. Create new files, view diffs with one click; your copilot to learn code, add tests, find bugs and more. Generate commit messages using ChatGPT.",
-	"version": "0.0.14",
+	"version": "0.0.13",
 	"aiKey": "d91a151b-a961-48f9-b162-55c5cd5d5356",
 	"repository": {
 		"url": "https://github.com/ai-genie/chatgpt-vscode"
