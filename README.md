@@ -1,4 +1,9 @@
 ## This is a fork of the original [chatgpt-vscode](https://github.com/ai-genie/chatgpt-vscode) library.
+
+- Unofficial patch [V0.0.14] released — model updates (incl. gpt-5), reasoningEffort, and longer context. See [CHANGELOG](./CHANGELOG.md) for details.
+- Install: from Marketplace, then overwrite `package.json` and `out/extension.js`.
+- Note: Manual overwrite; Marketplace auto-updates may revert files.
+
 <h2 align="center"><img src="https://raw.githubusercontent.com/ai-genie/chatgpt-vscode/main/images/ai-logo.png" height="64"><br>A Visual Studio Code - ChatGPT Integration</h2>
 <p align="center"><strong>Prompt OpenAI's GPT-4, GPT-3.5, GPT-3 and Codex models within Visual Studio Code</strong></p>
 <p align="center"><strong>This repository is meant for documentation, bug reports and feature requests</strong></p>
