@@ -2,7 +2,7 @@
 
 All notable changes to the [ChatGPT](https://marketplace.visualstudio.com/items?itemName=genieai.chatgpt-vscode) extension will be documented in this file.
 
-## [V0.0.14] 🧠 Reasoning Effort, Model Refresh, Context Expansion - 2025-08-31
+## [V0.0.13] 🧠 Reasoning Effort, Model Refresh, Context Expansion - 2025-08-31
 
 ### `package.json`
 - Updated `genieai.openai.model` choices: `gpt-5`, `gpt-5-mini`, `gpt-4.1`, `gpt-4.1-mini`, `gpt-4o`, `o4-mini`, `o3`.
@@ -86,7 +86,19 @@ Expanded the number of past messages sent to the API to improve conversational c
     **Effect:** Changes to `genieai.openai.reasoningEffort` take effect starting with the next conversation.
 
 ### How do I update?
-Download two files and overwrite: `package.json` and `out/extension.js`.
+
+This is an unofficial patch release from a fork. After installing the extension from the Marketplace, open your VS Code extensions folder (Command Palette: "Extensions: Open Extensions Folder").
+
+Common locations:
+- Windows: `%USERPROFILE%\\.vscode\\extensions`
+- macOS: `~/.vscode/extensions` (Insiders: `~/.vscode-insiders/extensions`)
+
+Then, in the installed `genieai.chatgpt-vscode-0.0.13` directory overwrite these two files with the ones from this repo:
+
+- `package.json`
+- `out/extension.js`
+
+Reload VS Code to apply changes.
 
 ## [V0.0.13] 🪄 Generate commit message is now in navigation - 2024-09-15
 
