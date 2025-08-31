@@ -1,4 +1,4 @@
-## This is a fork of the original [chatgpt-vscode](https://github.com/ai-genie/chatgpt-vscode) library.
+## This is a fork of the original [chatgpt-vscode](https://github.com/ai-genie/chatgpt-vscode) repository.
 
 - Unofficial patch [V0.0.14] released — model updates (incl. gpt-5), reasoningEffort, and longer context. See [CHANGELOG](./CHANGELOG.md) for details.
 - Install: from Marketplace, then overwrite `package.json` and `out/extension.js`.

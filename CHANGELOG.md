@@ -91,7 +91,7 @@ This is an unofficial patch release from a fork. After installing the extension 
 
 Common locations:
 - Windows: `%USERPROFILE%\\.vscode\\extensions`
-- macOS: `~/.vscode/extensions` (Insiders: `~/.vscode-insiders/extensions`)
+- Linux, macOS: `~/.vscode/extensions`
 
 Then, in the installed `genieai.chatgpt-vscode-0.0.13` directory overwrite these two files with the ones from this repo:
 
