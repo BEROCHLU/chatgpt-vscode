@@ -64,7 +64,7 @@ To address the issue of the AI having a short conversational context, the number
         // ...
     } while (i.length <= 32);
     ```
-    **Effect:** Context now includes up to 32 past messages (from 3), resolving the issue where the AI’s memory felt “short.”
+    **Effect:** The context now includes up to 32 past messages (from 3), fixing the issue where the AI remembered only the last message.
 
 #### 4. Watch `reasoningEffort` in configuration changes
 
