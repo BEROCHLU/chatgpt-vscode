@@ -386,7 +386,7 @@
 						"high"
 					],
 					"default": "medium",
-					"markdownDescription": "This parameter is used only with reasoning models, including `gpt-5` and `gpt-5-mini`. Higher values increase processing time and token usage.\n\nThe value **minimal** is intended for `gpt-5` and `gpt-5-mini`.",
+					"markdownDescription": "This parameter is used only with reasoning models, including `gpt-5`, `gpt-5-mini`, and `gpt-5-nano`. Higher values increase processing time and token usage.\n\nThe value **minimal** is intended for `gpt-5`, `gpt-5-mini`, and `gpt-5-nano`.",
 					"order": 2
 				},
 				"genieai.systemMessage": {

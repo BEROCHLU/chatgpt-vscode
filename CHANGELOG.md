@@ -27,7 +27,7 @@ Changed how models are detected as reasoning models.
         return /^(gpt-5(?!-chat)|o[1-9])/i.test(this.model);
     }
     ```
-    **Effect:** Models starting with `gpt-5` or `o` + digit (e.g., `o1`, `o3`) are recognized as reasoning models, excluding `gpt-5-chat-latest`.
+    **Effect:** Models starting with `gpt-5` or `o1-9` are recognized as reasoning models, excluding `gpt-5-chat-latest`.
 
 #### 2. Send `reasoning_effort` and auto-set `temperature` for reasoning models
 
