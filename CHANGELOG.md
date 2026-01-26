@@ -2,6 +2,63 @@
 
 All notable changes to the [ChatGPT](https://marketplace.visualstudio.com/items?itemName=genieai.chatgpt-vscode) extension will be documented in this file.
 
+## [V0.0.13-unofficial.2] 🛠️ Parameter Modernization - 2026-01-26
+
+### `package.json`
+- Updated `genieai.openai.model` choices: `gpt-5.1-chat-latest`, `gpt-5.1`, `gpt-4.1`, `gpt-4.1-mini`.
+- Updated `genieai.openai.reasoningEffort` (none, low, medium, high).
+
+### `out/extension.js`
+#### 1. Refined reasoning model detection
+
+  * **Before:**
+    ```javascript
+    get isReasoningModel() {
+        return /^(gpt-5(?!-chat)|o[1-9])/i.test(this.model);
+    }
+    ```
+  * **After:**
+    ```javascript
+    get isReasoningModel() {
+        return /^gpt-5\.\d/i.test(this.model);
+    }
+    ```
+
+#### 2. Automatic `reasoning_effort` for chat-latest models
+
+  * **Before:**
+    ```javascript
+    if (this.isReasoningModel) {
+      d.completionParams.temperature = 1;
+      d.completionParams["reasoning_effort"] = e;
+    }
+    ```
+  * **After:**
+    ```javascript
+    if (this.isReasoningModel) {
+      d.completionParams.temperature = 1;
+      d.completionParams["reasoning_effort"] = e;
+      if (d.completionParams["model"].endsWith("-chat-latest")) {
+        d.completionParams["reasoning_effort"] = "medium"; // chat-latest models only accept "medium"
+      }
+    }
+    ```
+
+#### 3. Increase context length (past message count)
+
+  * **Before:**
+    ```javascript
+    do {
+        // ... 
+    } while (i.length <= 32); // i is message array
+    ```
+  * **After:**
+    ```javascript
+    do {
+        // ...
+    } while (i.length <= 40);
+    ```
+
 ## [V0.0.13-unofficial.1] 🧠 Reasoning Effort, Model Refresh, Context Expansion - 2025-08-31
 
 ### `package.json`

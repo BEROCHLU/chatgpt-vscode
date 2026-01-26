@@ -364,29 +364,25 @@
 				"genieai.openai.model": {
 					"type": "string",
 					"enum": [
-						"gpt-5",
-						"gpt-5-mini",
-						"gpt-5-chat-latest",
+						"gpt-5.1-chat-latest",
+						"gpt-5.1",
 						"gpt-4.1",
-						"gpt-4.1-mini",
-						"gpt-4o",
-						"o4-mini",
-						"o3"
+						"gpt-4.1-mini"
 					],
-					"default": "gpt-5",
+					"default": "gpt-5.1-chat-latest",
 					"markdownDescription": "OpenAI models to use for your prompts. See [Models](https://beta.openai.com/docs/models/models).\n\n **Please note that some models have usage tier limitations. See [Usage tiers](https://platform.openai.com/docs/guides/rate-limits/usage-tiers).** \n\n _You can overwrite this in your settings(json) ignoring the warning if it's not part of the predefined enums_",
 					"order": 1
 				},
 				"genieai.openai.reasoningEffort": {
 					"type": "string",
 					"enum": [
-						"minimal",
+						"none",
 						"low",
 						"medium",
 						"high"
 					],
 					"default": "medium",
-					"markdownDescription": "This parameter is used only with reasoning models, including `gpt-5`, `gpt-5-mini`, and `gpt-5-nano`. Higher values increase processing time and token usage.\n\nThe value **minimal** is intended for `gpt-5`, `gpt-5-mini`, and `gpt-5-nano`.",
+					"markdownDescription": "The parameter 'reasoning_effort' is used for only reasoning models, including gpt-5.",
 					"order": 2
 				},
 				"genieai.systemMessage": {
