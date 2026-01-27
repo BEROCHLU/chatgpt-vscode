@@ -2,10 +2,10 @@
 
 All notable changes to the [ChatGPT](https://marketplace.visualstudio.com/items?itemName=genieai.chatgpt-vscode) extension will be documented in this file.
 
-## [V0.0.13-unofficial.2] 🛠️ Parameter Modernization - 2026-01-26
+## [V0.0.13-unofficial.2] 🛠️ Parameter Modernization - 2026-01-27
 
 ### `package.json`
-- Updated `genieai.openai.model` choices: `gpt-5.1-chat-latest`, `gpt-5.1`, `gpt-4.1`, `gpt-4.1-mini`.
+- Updated `genieai.openai.model` choices: `gpt-5.2-chat-latest`, `gpt-5.2`, `gpt-5.1-chat-latest`, `gpt-5.1`, `gpt-4.1`, `gpt-4.1-mini`.
 - Updated `genieai.openai.reasoningEffort` (none, low, medium, high).
 
 ### `out/extension.js`
@@ -56,7 +56,7 @@ All notable changes to the [ChatGPT](https://marketplace.visualstudio.com/items?
     ```javascript
     do {
         // ...
-    } while (i.length <= 40);
+    } while (i.length <= 45);
     ```
 
 ## [V0.0.13-unofficial.1] 🧠 Reasoning Effort, Model Refresh, Context Expansion - 2025-08-31
