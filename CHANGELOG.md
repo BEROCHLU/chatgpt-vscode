@@ -2,14 +2,17 @@
 
 All notable changes to the [ChatGPT](https://marketplace.visualstudio.com/items?itemName=genieai.chatgpt-vscode) extension will be documented in this file.
 
-## [V0.0.13-unofficial.2] 🛠️ Parameter Modernization - 2026-01-27
+## [V0.0.13-unofficial.2] 🛠️ Parameter Modernization - 2026-01-31
 
 ### `package.json`
-- Updated `genieai.openai.model` choices: `gpt-5.2-chat-latest`, `gpt-5.2`, `gpt-5.1-chat-latest`, `gpt-5.1`, `gpt-4.1`, `gpt-4.1-mini`.
-- Updated `genieai.openai.reasoningEffort` (none, low, medium, high).
+- Updated **genieai.openai.model** choices:  
+  `gpt-5.2-chat-latest`, `gpt-5.2`, `gpt-5.1-chat-latest`,
+  `gpt-5.1`, `gpt-4.1`, `gpt-4.1-mini`
+- Updated **genieai.openai.reasoningEffort** choices:  
+  `low`, `medium`, `high`, `none`
 
 ### `out/extension.js`
-#### 1. Refined reasoning model detection
+#### 1. Updated reasoning model detection
 
   * **Before:**
     ```javascript
@@ -36,11 +39,10 @@ All notable changes to the [ChatGPT](https://marketplace.visualstudio.com/items?
   * **After:**
     ```javascript
     if (this.isReasoningModel) {
+      const isChatLatest = d.completionParams.model.endsWith("-chat-latest");
+
       d.completionParams.temperature = 1;
-      d.completionParams["reasoning_effort"] = e;
-      if (d.completionParams["model"].endsWith("-chat-latest")) {
-        d.completionParams["reasoning_effort"] = "medium"; // chat-latest models only accept "medium"
-      }
+      d.completionParams.reasoning_effort = isChatLatest ? "medium" : e; // Chat models only support "medium".
     }
     ```
 
