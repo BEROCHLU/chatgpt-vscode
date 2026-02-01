@@ -9,7 +9,7 @@ All notable changes to the [ChatGPT](https://marketplace.visualstudio.com/items?
   `gpt-5.2-chat-latest`, `gpt-5.2`, `gpt-5.1-chat-latest`,
   `gpt-5.1`, `gpt-4.1`, `gpt-4.1-mini`, `o4-mini`
 - Updated **genieai.openai.reasoningEffort** choices:  
-  `low`, `medium`, `high`, `none`
+  `none`, `low`, `medium`, `high`
 
 ### `out/extension.js`
 #### 1. Updated reasoning model detection

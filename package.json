@@ -379,10 +379,10 @@
 				"genieai.openai.reasoningEffort": {
 					"type": "string",
 					"enum": [
+						"none",
 						"low",
 						"medium",
-						"high",
-						"none"
+						"high"
 					],
 					"default": "medium",
 					"markdownDescription": "The parameter 'reasoning_effort' is used for only reasoning models, including gpt-5.",
