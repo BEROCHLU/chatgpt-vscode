@@ -369,19 +369,20 @@
 						"gpt-5.1-chat-latest",
 						"gpt-5.1",
 						"gpt-4.1",
-						"gpt-4.1-mini"
+						"gpt-4.1-mini",
+						"o4-mini"
 					],
-					"default": "gpt-5.1-chat-latest",
+					"default": "gpt-5.2-chat-latest",
 					"markdownDescription": "OpenAI models to use for your prompts. See [Models](https://beta.openai.com/docs/models/models).\n\n **Please note that some models have usage tier limitations. See [Usage tiers](https://platform.openai.com/docs/guides/rate-limits/usage-tiers).** \n\n _You can overwrite this in your settings(json) ignoring the warning if it's not part of the predefined enums_",
 					"order": 1
 				},
 				"genieai.openai.reasoningEffort": {
 					"type": "string",
 					"enum": [
-						"none",
 						"low",
 						"medium",
-						"high"
+						"high",
+						"none"
 					],
 					"default": "medium",
 					"markdownDescription": "The parameter 'reasoning_effort' is used for only reasoning models, including gpt-5.",

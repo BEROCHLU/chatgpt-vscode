@@ -7,7 +7,7 @@ All notable changes to the [ChatGPT](https://marketplace.visualstudio.com/items?
 ### `package.json`
 - Updated **genieai.openai.model** choices:  
   `gpt-5.2-chat-latest`, `gpt-5.2`, `gpt-5.1-chat-latest`,
-  `gpt-5.1`, `gpt-4.1`, `gpt-4.1-mini`
+  `gpt-5.1`, `gpt-4.1`, `gpt-4.1-mini`, `o4-mini`
 - Updated **genieai.openai.reasoningEffort** choices:  
   `low`, `medium`, `high`, `none`
 
@@ -23,7 +23,7 @@ All notable changes to the [ChatGPT](https://marketplace.visualstudio.com/items?
   * **After:**
     ```javascript
     get isReasoningModel() {
-        return /^gpt-5\.\d/i.test(this.model);
+        return /^(gpt-5\.\d|o[4-9])/i.test(this.model);
     }
     ```
 
