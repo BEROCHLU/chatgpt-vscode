@@ -2,6 +2,25 @@
 
 All notable changes to the [ChatGPT](https://marketplace.visualstudio.com/items?itemName=genieai.chatgpt-vscode) extension will be documented in this file.
 
+## [V0.0.13-unofficial.3] 🛠️ Added support for latest model - 2026-03-04
+
+### `package.json`
+- Added **genieai.openai.model**:  
+  `gpt-5.3-chat-latest`
+
+### `out/extension.js`
+- Added new model definition:  
+    ```javascript
+    var lo = {
+            "gpt-5.3-chat-latest": {
+                maxTokens: 16384,
+                version: "gpt-5",
+                type: "chat"
+            },
+            // ... other models
+    }
+    ```
+
 ## [V0.0.13-unofficial.2] 🛠️ Parameter Modernization - 2026-01-31
 
 ### `package.json`
