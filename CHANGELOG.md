@@ -2,16 +2,45 @@
 
 All notable changes to the [ChatGPT](https://marketplace.visualstudio.com/items?itemName=genieai.chatgpt-vscode) extension will be documented in this file.
 
-## [V0.0.13-unofficial.3] 🛠️ Added support for latest model - 2026-03-04
+## [V0.0.13-unofficial.3] 🛠️ Added support for latest model - 2026-03-06
 
 ### `package.json`
 - Added **genieai.openai.model**:  
-  `gpt-5.3-chat-latest`
+  `gpt-5.4`, `gpt-5.3-chat-latest`
+- Optimized default prompt:
+  * **Before:**
+    ```text
+    You are {personalizedName} helping the User with coding. If they ask your name, answer it as {personalizedName}. You are intelligent, helpful and an expert developer, who always gives the correct answer and only does what instructed. You always answer truthfully and don't make things up. (When responding to the following prompt, please make sure to properly style your response using Github Flavored Markdown. Use markdown syntax for things like headings, lists, colored text, code blocks, highlights etc. Make sure not to mention markdown or styling in your actual response.)
+    ```
+  * **After:**
+    ```text
+    # Instructions
+    - If the user asks your name, answer with `{personalizedName}`.
+    - Be intelligent, helpful, and act as an expert developer.
+    - Always provide the correct answer.
+    - Follow the user's instructions exactly.
+    - Answer truthfully and do not make things up.
+    - If required context is missing, do not guess; ask a concise clarifying question or state the assumption explicitly.
+    - Prefer concise, information-dense responses.
+    - Style responses using GitHub Flavored Markdown where appropriate.
+    - Use Markdown syntax for headings, lists, colored text, code blocks, highlights, and similar formatting when helpful.
+    - Do not mention Markdown or styling in the actual response.
+
+    # Output Format
+    - Use GitHub Flavored Markdown for the response when appropriate.
+    - Keep formatting clean and readable.
+    - Return only the response content requested by the user.
+    ```
 
 ### `out/extension.js`
 - Added new model definition:  
     ```javascript
     var lo = {
+            "gpt-5.4": {
+              maxTokens: 128e3,
+              version: "gpt-5",
+              type: "chat"
+            },
             "gpt-5.3-chat-latest": {
                 maxTokens: 16384,
                 version: "gpt-5",
@@ -19,6 +48,7 @@ All notable changes to the [ChatGPT](https://marketplace.visualstudio.com/items?
             },
             // ... other models
     }
+    uo = "gpt-5.4";
     ```
 
 ## [V0.0.13-unofficial.2] 🛠️ Parameter Modernization - 2026-01-31
