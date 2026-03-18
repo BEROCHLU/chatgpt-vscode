@@ -2,11 +2,11 @@
 
 All notable changes to the [ChatGPT](https://marketplace.visualstudio.com/items?itemName=genieai.chatgpt-vscode) extension will be documented in this file.
 
-## [V0.0.13-unofficial.3] 🛠️ Added support for latest model - 2026-03-07
+## [V0.0.13-unofficial.3] 🛠️ Added support for latest model - 2026-03-18
 
 ### `package.json`
 - Added **genieai.openai.model**:  
-  `gpt-5.4`, `gpt-5.3-chat-latest`
+  `gpt-5.4`, `gpt-5.4-mini`, `gpt-5.3-chat-latest`
 - Optimized default prompt:
   * **Before:**
     ```text
@@ -33,6 +33,11 @@ All notable changes to the [ChatGPT](https://marketplace.visualstudio.com/items?
     ```javascript
     var lo = {
             "gpt-5.4": {
+              maxTokens: 128e3,
+              version: "gpt-5",
+              type: "chat"
+            },
+            "gpt-5.4-mini": {
               maxTokens: 128e3,
               version: "gpt-5",
               type: "chat"
