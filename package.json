@@ -364,6 +364,7 @@
 				"genieai.openai.model": {
 					"type": "string",
 					"enum": [
+						"chat-latest",
 						"gpt-5.5",
 						"gpt-5.4",
 						"gpt-5.4-mini",
