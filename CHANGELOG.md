@@ -27,6 +27,20 @@ All notable changes to the [ChatGPT](https://marketplace.visualstudio.com/items?
     uo = "gpt-5.5";
     ```
 
+- Updated reasoning model detection
+  * **Before:**
+    ```javascript
+    get isReasoningModel() {
+        return /^(gpt-5\.\d|o[4-9])/i.test(this.model);
+    }
+    ```
+  * **After:**
+    ```javascript
+    get isReasoningModel() {
+        return /^(gpt-5\.\d|chat-latest)/i.test(this.model);
+    }
+    ```
+
 ## [V0.0.13-unofficial.3] 🛠️ Added support for latest model - 2026-03-18
 
 ### `package.json`
