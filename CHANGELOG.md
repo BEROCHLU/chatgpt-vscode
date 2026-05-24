@@ -2,14 +2,45 @@
 
 All notable changes to the [ChatGPT](https://marketplace.visualstudio.com/items?itemName=genieai.chatgpt-vscode) extension will be documented in this file.
 
+## [V0.0.13-unofficial.5] 🛠️ Fix `chat-latest` Check & Add `xhigh` - 2026-05-24
+
+### `package.json`
+- Added `xhigh` to **genieai.openai.reasoningEffort** choices:  
+  `none`, `low`, `medium`, `high`, `xhigh`
+
+### `out/extension.js`
+#### 1. Fix `isChatLatest` detection logic
+Corrected the check to properly recognize the base `chat-latest` model.
+  * **Before:**
+    ```javascript
+    const isChatLatest = d.completionParams.model.endsWith("-chat-latest");
+    ```
+  * **After:**
+    ```javascript
+    const isChatLatest = d.completionParams.model.includes("chat-latest");
+    ```
+
+#### 2. Silence `esbuild` negative-zero check warning
+Replaced standard negative equality check with `Object.is` to correctly detect `-0` and prevent compilation warnings.
+  * **Before:**
+    ```javascript
+    else if (s === -0) return 0
+    ```
+  * **After:**
+    ```javascript
+    else if (Object.is(s, -0)) return 0
+    ```
+
+
 ## [V0.0.13-unofficial.4] 🛠️ Added support for latest model - 2026-05-11
 
 ### `package.json`
 - Added **genieai.openai.model**:  
   `gpt-5.5`, `chat-latest`
+- **Model Cleanup:** Removed older reasoning models (like `gpt-5.2`, `gpt-5.1`, `o4-mini`) to focus on the latest versions. `gpt-4.1` and `gpt-4.1-mini` are retained as they feature a 1M context window.
 
 ### `out/extension.js`
-- Added new model definition:  
+#### 1. Added new model definition:  
     ```javascript
     var lo = {
             "chat-latest": {
@@ -27,7 +58,8 @@ All notable changes to the [ChatGPT](https://marketplace.visualstudio.com/items?
     uo = "gpt-5.5";
     ```
 
-- Updated reasoning model detection
+#### 2. Updated reasoning model detection
+Reflected the model list cleanup in the reasoning model detection logic.
   * **Before:**
     ```javascript
     get isReasoningModel() {

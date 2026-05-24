@@ -382,7 +382,8 @@
 						"none",
 						"low",
 						"medium",
-						"high"
+						"high",
+						"xhigh"
 					],
 					"default": "medium",
 					"markdownDescription": "The parameter 'reasoning_effort' is used for only reasoning models, including gpt-5.",
