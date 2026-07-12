@@ -30,10 +30,10 @@ All notable changes to the [ChatGPT](https://marketplace.visualstudio.com/items?
     uo = "gpt-5.6-sol";
     ```
 #### 2. Removed unused `version` property
-    Removed the `version` property (e.g. `version: "gpt-5"`) from all model definitions inside the `lo` object, as it is no longer referenced anywhere in the codebase.
+Removed the `version` property (e.g. `version: "gpt-5"`) from all model definitions inside the `lo` object, as it is no longer referenced anywhere in the codebase.
 
 #### 3. Removed legacy non-chat completions API code
-    Removed the legacy `J0` class (completions API helper) and cleaned up unused conditional paths (e.g. `!this.isChatModel`) because all supported models are now chat-based.
+Removed the legacy `J0` class (completions API helper) and cleaned up unused conditional paths (e.g. `!this.isChatModel`) because all supported models are now chat-based.
 
 ## [V0.0.13-unofficial.5] 🛠️ Fix `chat-latest` Check & Add `xhigh` - 2026-05-24
 
