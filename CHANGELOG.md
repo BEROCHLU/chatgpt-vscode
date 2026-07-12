@@ -2,6 +2,39 @@
 
 All notable changes to the [ChatGPT](https://marketplace.visualstudio.com/items?itemName=genieai.chatgpt-vscode) extension will be documented in this file.
 
+## [V0.0.13-unofficial.6] 🛠️ Added support for gpt-5.6 models ☀️🌍🌙 - 2026-07-12
+
+### `package.json`
+- Added **genieai.openai.model**:  
+  `gpt-5.6-sol`, `gpt-5.6-terra`, `gpt-5.6-luna`
+- Updated default model to `gpt-5.6-sol`
+
+### `out/extension.js`
+#### 1. Added new model definitions:
+    ```javascript
+    var lo = {
+            "gpt-5.6-sol": {
+                maxTokens: 128e3,
+                type: "chat"
+            },
+            "gpt-5.6-terra": {
+                maxTokens: 128e3,
+                type: "chat"
+            },
+            "gpt-5.6-luna": {
+                maxTokens: 128e3,
+                type: "chat"
+            },
+            // ... other models
+    }
+    uo = "gpt-5.6-sol";
+    ```
+#### 2. Removed unused `version` property
+    Removed the `version` property (e.g. `version: "gpt-5"`) from all model definitions inside the `lo` object, as it is no longer referenced anywhere in the codebase.
+
+#### 3. Removed legacy non-chat completions API code
+    Removed the legacy `J0` class (completions API helper) and cleaned up unused conditional paths (e.g. `!this.isChatModel`) because all supported models are now chat-based.
+
 ## [V0.0.13-unofficial.5] 🛠️ Fix `chat-latest` Check & Add `xhigh` - 2026-05-24
 
 ### `package.json`
