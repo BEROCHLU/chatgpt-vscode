@@ -2,6 +2,72 @@
 
 All notable changes to the [ChatGPT](https://marketplace.visualstudio.com/items?itemName=genieai.chatgpt-vscode) extension will be documented in this file.
 
+## [V0.0.13-unofficial.7] 🛠️ Added support for gpt-6-astra & unified request settings - 2026-09-05
+
+### `package.json`
+
+- Added **genieai.openai.model**:  
+  `gpt-6-astra`
+- Updated default model to `gpt-6-astra`
+- **Model Cleanup:** Removed `gpt-5.4`, `gpt-5.4-mini`, `gpt-5.3-chat-latest`, `gpt-4.1`, and `gpt-4.1-mini` from the model choices.
+
+### `out/extension.js`
+
+#### 1. Added new model definition and removed older models
+
+Added `gpt-6-astra`, updated the default model, and removed the same older models from the `lo` object.
+
+```javascript
+var lo = {
+    "gpt-6-astra": {
+        maxTokens: 128e3,
+        type: "chat"
+    },
+    // ... other models
+};
+uo = "gpt-6-astra";
+```
+
+#### 2. Updated reasoning model detection
+
+Broadened the model check to include GPT-5 and GPT-6 names, including future `gpt-6.x` names.
+
+* **Before:**
+  ```javascript
+  return /^(gpt-5\.\d|chat-latest)/i.test(this.model)
+  ```
+* **After:**
+  ```javascript
+  return /^(gpt-[56]|chat-latest)/i.test(this.model)
+  ```
+
+#### 3. Removed unsupported sampling parameters for Astra
+
+Remove `temperature` and `top_p` from the final request body for `gpt-6-astra`, after merging client defaults and per-request parameters. This applies to regular chat, one-shot generation, and commit message generation, for both streaming and non-streaming requests.
+
+```javascript
+if (I.model === "gpt-6-astra") {
+    delete I.temperature;
+    delete I.top_p;
+}
+```
+
+#### 4. Added a GPT-6 reasoning effort fallback
+
+Kept `none` in the reasoning effort choices. When a GPT-6 model is selected, convert `none` to `low` before sending the request. The existing `chat-latest` override remains `medium`.
+
+```javascript
+d.completionParams.reasoning_effort = isChatLatest
+    ? "medium"
+    : /^gpt-6/i.test(this.model) && e === "none" ? "low" : e;
+```
+
+#### 5. Unified chat and one-shot API settings
+
+Extracted shared settings into `getApiOptions(apiKey, oneShot)`. Both one-shot initialization paths now apply the same reasoning effort settings, API base URL, organization, and Azure endpoint as regular chat. One-shot generation retains its own temperature setting for non-reasoning models and its max-token fallback.
+
+Removed the one-shot `stop: ["\n```"]` parameter so that a code fence does not stop generation before the code is returned.
+
 ## [V0.0.13-unofficial.6] 🛠️ Added support for gpt-5.6 models ☀️🌍🌙 - 2026-07-12
 
 ### `package.json`
