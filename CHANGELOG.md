@@ -25,12 +25,15 @@ All notable changes to the [ChatGPT](https://marketplace.visualstudio.com/items?
 
 ### Manual Update
 
-Replace these files in the installed Genie AI extension folder, then reload VS Code:
+Manual Update
+Overwrite these four files in the installed Genie AI extension folder using the files from this release:
 
-- `package.json`
-- `out/extension.js`
-- `out/web/main.js`
-- `out/web/main.css`
+| Release fileOverwrite destination |                    |
+| --------------------------------- | ------------------ |
+| `package.json`                    | `package.json`     |
+| `extension.js`                | `out/extension.js` |
+| `main.js`                 | `out/web/main.js`  |
+| `main.css`                | `out/web/main.css` |
 
 Update all four files together, then run **Developer: Reload Window** in VS Code. Optionally overwrite `CHANGELOG.md` to update the What's New page.
 
