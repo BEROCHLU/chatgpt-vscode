@@ -2,6 +2,38 @@
 
 All notable changes to the [ChatGPT](https://marketplace.visualstudio.com/items?itemName=genieai.chatgpt-vscode) extension will be documented in this file.
 
+## [V0.0.13-unofficial.8] 🛠️ System Message Fix & Code Cleanup
+
+### `package.json`
+
+- Removed `chat-latest` and `gpt-5.5`, the `temperature` / `top_p` settings, and the `none` reasoning effort option. Default effort remains `medium`.
+- **Settings Update:** Manually change any saved `genieai.openai.reasoningEffort: "none"` to `low`, `medium`, `high`, or `xhigh`; no automatic migration is provided.
+- Removed Editor View switch commands and buttons; enabled Generate code for current models.
+
+### `out/extension.js`
+
+- Restored `genieai.systemMessage` as a `developer` message for reasoning models, with empty-setting and `{personalizedName}` handling. Kept the dedicated commit prompt unchanged.
+- Removed Editor View. Always open Conversation View.
+- Removed unused model definitions, type checks, token-limit variables, history conversion, and streaming helpers.
+- Removed unused conversation-skipping branches, duplicate imports, and UUID aliases; kept UUID v4 for message IDs.
+- Removed the unused `cleargpt3` message handler and `apiKey` getter / setter.
+- Removed all `temperature` / `top_p` handling and the `chat-latest` / GPT-6 reasoning overrides. Send the configured reasoning effort unchanged.
+
+### `out/web/main.js` / `out/web/main.css`
+
+- Removed Editor View event handlers, shortcuts, temperature controls, and their styles.
+
+### Manual Update
+
+Replace these files in the installed Genie AI extension folder, then reload VS Code:
+
+- `package.json`
+- `out/extension.js`
+- `out/web/main.js`
+- `out/web/main.css`
+
+Update all four files together, then run **Developer: Reload Window** in VS Code. Optionally overwrite `CHANGELOG.md` to update the What's New page.
+
 ## [V0.0.13-unofficial.7] 🛠️ Added support for gpt-6-astra & unified request settings - 2026-09-05
 
 ### `package.json`

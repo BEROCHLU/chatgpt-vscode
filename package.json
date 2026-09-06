@@ -50,28 +50,18 @@
 			"view/title": [
 				{
 					"command": "chatgpt-vscode.newChat",
-					"when": "view == chatgpt-vscode.view && !chatgpt-vscode.editor-view",
+					"when": "view == chatgpt-vscode.view",
 					"group": "navigation@2"
 				},
 				{
 					"command": "chatgpt-vscode.conversationList",
-					"when": "view == chatgpt-vscode.view && !chatgpt-vscode.editor-view && config.genieai.enableConversationHistory",
+					"when": "view == chatgpt-vscode.view && config.genieai.enableConversationHistory",
 					"group": "navigation@3"
 				},
 				{
 					"command": "chatgpt-vscode.exportConversation",
-					"when": "view == chatgpt-vscode.view && !chatgpt-vscode.editor-view",
+					"when": "view == chatgpt-vscode.view",
 					"group": "navigation@4"
-				},
-				{
-					"command": "chatgpt-vscode.conversationView",
-					"when": "view == chatgpt-vscode.view && chatgpt-vscode.editor-view",
-					"group": "navigation@5"
-				},
-				{
-					"command": "chatgpt-vscode.oneShot",
-					"when": "view == chatgpt-vscode.view && !chatgpt-vscode.editor-view",
-					"group": "navigation@6"
 				},
 				{
 					"command": "chatgpt-vscode.whatsNew",
@@ -167,7 +157,7 @@
 				"command": "chatgpt-vscode.generateCode",
 				"key": "ctrl+shift+a",
 				"mac": "cmd+shift+a",
-				"when": "editorHasSelection"
+				"when": "editorHasSelection && config.genieai.openai.generateCode-enabled"
 			},
 			{
 				"command": "chatgpt-vscode.addTests",
@@ -226,11 +216,6 @@
 		],
 		"commands": [
 			{
-				"command": "chatgpt-vscode.oneShot",
-				"title": "Genie: Editor view",
-				"icon": "$(file-code)"
-			},
-			{
 				"command": "chatgpt-vscode.exportConversation",
 				"title": "Genie: Export conversation",
 				"icon": "$(export)"
@@ -244,11 +229,6 @@
 				"command": "chatgpt-vscode.newChat",
 				"title": "Genie: Start a new chat",
 				"icon": "$(add)"
-			},
-			{
-				"command": "chatgpt-vscode.conversationView",
-				"title": "Genie: Conversation view",
-				"icon": "$(comment-discussion)"
 			},
 			{
 				"command": "chatgpt-vscode.openSettings",
@@ -270,7 +250,7 @@
 			{
 				"command": "chatgpt-vscode.generateCode",
 				"title": "Genie: Generate code",
-				"enablement": "editorHasSelection"
+				"enablement": "editorHasSelection && config.genieai.openai.generateCode-enabled"
 			},
 			{
 				"command": "chatgpt-vscode.addTests",
@@ -367,9 +347,7 @@
 						"gpt-6-astra",
 						"gpt-5.6-sol",
 						"gpt-5.6-terra",
-						"gpt-5.6-luna",
-						"chat-latest",
-						"gpt-5.5"
+						"gpt-5.6-luna"
 					],
 					"default": "gpt-6-astra",
 					"markdownDescription": "OpenAI models to use for your prompts. See [Models](https://beta.openai.com/docs/models/models).\n\n **Please note that some models have usage tier limitations. See [Usage tiers](https://platform.openai.com/docs/guides/rate-limits/usage-tiers).** \n\n _You can overwrite this in your settings(json) ignoring the warning if it's not part of the predefined enums_",
@@ -378,7 +356,6 @@
 				"genieai.openai.reasoningEffort": {
 					"type": "string",
 					"enum": [
-						"none",
 						"low",
 						"medium",
 						"high",
@@ -414,23 +391,11 @@
 					"markdownDescription": "[Experimental Feature] This feature is experimental. Please be aware that this may not work as expected and/or may be turned off in the future. Enable if you'd like to experiment and give feedback.\n\n**Saves the conversations to your VS Code Extension global storage on your disk.**\n\nOnce you enable this feature, your conversations will start getting persisted on your disk.\n\nCheck top toolbar in the conversation window to see your past conversations.\n\n[Read more about global storage](https://code.visualstudio.com/api/extension-capabilities/common-capabilities#data-storage:~:text=ExtensionContext.globalStorageUri%3A-,A%20global%20storage,-URI%20pointing%20to) \n\nWindows: `%APPDATA%/Code/User/globalStorage/genieai.chatgpt-vscode` \n\n MacOS: `$HOME/Library/Application Support/[Visual Studio ]Code[ - Variant]/User/globalStorage/genieai.chatgpt-vscode`",
 					"order": 14
 				},
-				"genieai.openai.temperature": {
-					"type": "number",
-					"default": 1,
-					"markdownDescription": "What sampling temperature to use. Higher values means the model will take more risks. Try 1 for more creative applications, and 0 (argmax sampling) for ones with a well-defined answer.\n\nIt is recommended altering this or top_p but not both. [Documentation](https://beta.openai.com/docs/api-reference/completions/create#completions/create-temperature)\n\n\n\n`0`: Get more precise answers\n\n`0.5`: Get more balanced answers\n\n`1`: Get more creative answers",
-					"order": 15
-				},
 				"genieai.openai.maxTokens": {
 					"type": "number",
-					"default": 16384,
+					"default": 32768,
 					"markdownDescription": "⚠️ If you receive an HTTP 400 Bad Request, lower your maxTokens setting to allow completion to fulfill your request ⚠️\n\n The maximum number of tokens to generate in the completion.\n\n Choose this number carefully considering the your preferred model's allowed max number of tokens. \n\nThe token count of your prompt plus max_tokens cannot exceed the model's context length. [Documentation](https://beta.openai.com/docs/api-reference/completions/create#completions/create-max_tokens)",
 					"order": 16
-				},
-				"genieai.openai.top_p": {
-					"type": "number",
-					"default": 1,
-					"markdownDescription": "An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass. So 0.1 means only the tokens comprising the top 10% probability mass are considered. \n\nIt is recommended altering this or temperature but not both. [Documentation](https://beta.openai.com/docs/api-reference/completions/create#completions/create-top_p)",
-					"order": 17
 				},
 				"genieai.openai.apiBaseUrl": {
 					"type": "string",
@@ -455,7 +420,7 @@
 				"genieai.openai.generateCode-enabled": {
 					"type": "boolean",
 					"default": true,
-					"description": "Enable the code generation context menu item for the selected comment/code for Codex. Only available with code-* models",
+					"description": "Enable the Generate code command for selected code or comments using the configured model.",
 					"order": 21
 				},
 				"genieai.promptPrefix.addTests": {
@@ -588,42 +553,13 @@
 		}
 	},
 	"scripts": {
-		"vscode:prepublish": "rimraf out && npm-run-all --parallel \"build:* --minify\"",
-		"build:scripts": "esbuild ./src/web/main.js ./src/extension.ts --bundle --outdir=out --external:vscode --format=cjs --platform=node",
-		"build:css": "tailwindcss -i ./src/web/main.css -o ./out/web/main.css",
-		"watch": "npm-run-all --parallel \"build:* --sourcemap --watch\"",
-		"test": "eslint src --ext ts && tsc --noEmit"
+		"vscode:prepublish": "npm run build",
+		"build": "esbuild out/extension.js --minify --platform=node --target=node20 --outfile=_extension.js",
+		"watch": "npm run build -- --watch",
+		"test": "node --check out/extension.js && node --check out/web/main.js"
 	},
 	"devDependencies": {
-		"@types/glob": "^8.0.0",
-		"@types/isomorphic-fetch": "^0.0.36",
-		"@types/mocha": "^10.0.1",
-		"@types/node": "16.x",
-		"@types/uuid": "^9.0.0",
-		"@types/vscode": "^1.73.0",
-		"@types/vscode-webview": "^1.57.0",
-		"@typescript-eslint/eslint-plugin": "^5.45.0",
-		"@typescript-eslint/parser": "^5.45.0",
-		"@vscode/test-electron": "^2.2.0",
-		"esbuild": "^0.15.18",
-		"eslint": "^8.28.0",
-		"glob": "^8.0.3",
-		"mocha": "^10.1.0",
-		"npm-run-all": "^4.1.5",
-		"tailwindcss": "^3.2.7",
-		"ts-loader": "^9.4.1",
-		"typescript": "^4.9.3"
-	},
-	"dependencies": {
-		"@vscode/extension-telemetry": "^0.6.2",
-		"chatgpt": "file:../chatgpt-api/chatgpt-v5.1.1-4.tgz",
-		"delay": "^5.0.0",
-		"isomorphic-fetch": "^3.0.0",
-		"openai": "^3.1.0",
-		"uuid": "^9.0.0"
-	},
-	"resolutions": {
-		"clone-deep": "^4.0.1"
+		"esbuild": "^0.15.18"
 	},
 	"__metadata": {
 		"id": "daf35080-6889-46fc-89bf-288dce8f8ed2",
