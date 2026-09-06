@@ -2,7 +2,7 @@
 
 All notable changes to the [ChatGPT](https://marketplace.visualstudio.com/items?itemName=genieai.chatgpt-vscode) extension will be documented in this file.
 
-## [V0.0.13-unofficial.8] 🛠️ System Message Fix & Code Cleanup
+## [V0.0.13-unofficial.8] 🛠️ System Message Fix & Code Cleanup - 2026-09-06
 
 ### `package.json`
 
