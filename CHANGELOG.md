@@ -2,7 +2,18 @@
 
 All notable changes to the [ChatGPT](https://marketplace.visualstudio.com/items?itemName=genieai.chatgpt-vscode) extension will be documented in this file.
 
-## [V0.0.13-unofficial.8] 🛠️ System Message Fix & Code Cleanup - 2026-09-06
+## [V0.0.13-unofficial.9] 🛠️ Added support for GPT-6 Sol and Luna
+
+### `package.json`
+
+- Added `gpt-6-sol` and `gpt-6-luna` to the model choices.
+- Updated the default model to `gpt-6-sol`.
+
+### `out/extension.js`
+
+- Updated the fallback model to `gpt-6-sol`.
+
+## [V0.0.13-unofficial.8] 🛠️ System Message Fix & Code Cleanup
 
 ### `package.json`
 
@@ -25,15 +36,14 @@ All notable changes to the [ChatGPT](https://marketplace.visualstudio.com/items?
 
 ### Manual Update
 
-Manual Update
 Overwrite these four files in the installed Genie AI extension folder using the files from this release:
 
-| Release fileOverwrite destination |                    |
-| --------------------------------- | ------------------ |
-| `package.json`                    | `package.json`     |
-| `extension.js`                | `out/extension.js` |
-| `main.js`                 | `out/web/main.js`  |
-| `main.css`                | `out/web/main.css` |
+| Release file | Overwrite destination |
+| --- | --- |
+| `extension.js` | `out/extension.js` |
+| `package.json` | `package.json` |
+| `main.js` | `out/web/main.js` |
+| `main.css` | `out/web/main.css` |
 
 Update all four files together, then run **Developer: Reload Window** in VS Code. Optionally overwrite `CHANGELOG.md` to update the What's New page.
 
