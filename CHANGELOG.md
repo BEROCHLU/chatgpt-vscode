@@ -2,7 +2,18 @@
 
 All notable changes to the [ChatGPT](https://marketplace.visualstudio.com/items?itemName=genieai.chatgpt-vscode) extension will be documented in this file.
 
-## [V0.0.13-unofficial.9] 🛠️ Added support for GPT-6 Sol and Luna
+## [V0.0.13-unofficial.10] 🛠️ Added support for GPT-6.1 Sol - 2026-09-30
+
+### `package.json`
+
+- Added `gpt-6.1-sol` to the model choices.
+- Updated the default model to `gpt-6.1-sol`.
+
+### `out/extension.js`
+
+- Updated the fallback model to `gpt-6.1-sol`.
+
+## [V0.0.13-unofficial.9] 🛠️ Added support for GPT-6 Sol and Luna - 2026-09-23
 
 ### `package.json`
 
@@ -13,7 +24,7 @@ All notable changes to the [ChatGPT](https://marketplace.visualstudio.com/items?
 
 - Updated the fallback model to `gpt-6-sol`.
 
-## [V0.0.13-unofficial.8] 🛠️ System Message Fix & Code Cleanup
+## [V0.0.13-unofficial.8] 🛠️ System Message Fix & Code Cleanup - 2026-09-06
 
 ### `package.json`
 
