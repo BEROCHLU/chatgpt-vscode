@@ -2,6 +2,18 @@
 
 All notable changes to the [ChatGPT](https://marketplace.visualstudio.com/items?itemName=genieai.chatgpt-vscode) extension will be documented in this file.
 
+## [V0.0.13-unofficial.12] 🛠️ Added support for GPT-6.2 Astra and Sol - 2026-11-19
+
+### `package.json`
+
+- Added `gpt-6.2-astra` and `gpt-6.2-sol` to the model choices.
+- Updated the default model to `gpt-6.2-sol`.
+
+### `out/extension.js`
+
+- Updated the fallback model to `gpt-6.2-sol`.
+- Improved commit message error parsing and notifications: parse OpenAI error JSON (`status`, `code`, `type`, `param`, `message`), detect context/input token limit, TPM rate limit, HTTP 413, and `git diff` `maxBuffer` errors with model name, staged diff size, and estimated tokens; ignore user-initiated `AbortError` cancellations and remove the dead `tostring` typo.
+
 ## [V0.0.13-unofficial.11] 🛠️ Added support for GPT-6.1 Terra - 2026-11-01
 
 ### `package.json`
@@ -24,7 +36,7 @@ All notable changes to the [ChatGPT](https://marketplace.visualstudio.com/items?
 
 - Updated the fallback model to `gpt-6.1-sol`.
 
-## [V0.0.13-unofficial.9] 🛠️ Added support for GPT-6 Sol and Luna
+## [V0.0.13-unofficial.9] 🛠️ Added support for GPT-6 Sol and Luna - 2026-09-23
 
 ### `package.json`
 
@@ -35,7 +47,7 @@ All notable changes to the [ChatGPT](https://marketplace.visualstudio.com/items?
 
 - Updated the fallback model to `gpt-6-sol`.
 
-## [V0.0.13-unofficial.8] 🛠️ System Message Fix & Code Cleanup
+## [V0.0.13-unofficial.8] 🛠️ System Message Fix & Code Cleanup - 2026-09-06
 
 ### `package.json`
 

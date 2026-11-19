@@ -1,8 +1,32 @@
-## This is a fork of the original [chatgpt-vscode](https://github.com/ai-genie/chatgpt-vscode) repository.
+## Unofficial Patch for the [chatgpt-vscode](https://github.com/ai-genie/chatgpt-vscode) Extension
 
-- Unofficial patch [V0.0.13-unofficial] released — model updates (incl. gpt-5.x), reasoningEffort, and longer context. See [CHANGELOG](./CHANGELOG.md) for details.
-- Install: from Marketplace, then overwrite `package.json` and `out/extension.js`.
-- Note: Manual overwrite; Marketplace auto-updates may revert files.
+Patch series (`V0.0.13-unofficial.x`) — see [CHANGELOG.md](./CHANGELOG.md) for full details.
+
+### What's Changed
+
+- **Models:** GPT-6 / 6.x and GPT-5.6 support
+- **Reasoning & Output:** `reasoningEffort` setting and expanded output token limits (`maxTokens`)
+- **Instructions & UI:** `developer` system messages restored; legacy Editor View and unsupported sampling parameters removed
+
+### Installation
+
+1. Install the original extension from the VS Code Marketplace.
+2. Download the latest `*-patch.zip` from [Releases](https://github.com/BEROCHLU/chatgpt-vscode/releases) and extract its contents (`package.json` and `out/`) directly into the installed extension folder, overwriting existing files.
+3. Reload VS Code (**Developer: Reload Window**).
+
+Included files:
+
+| Path in patch zip / repo | Description |
+| --- | --- |
+| `package.json` | Extension manifest & model choices |
+| `out/extension.js` | Minified extension entry point |
+| `out/web/main.js` | Webview script |
+| `out/web/main.css` | Webview styles |
+
+> [!NOTE]
+> Because files are overwritten manually, Marketplace auto-updates may revert your changes.
+
+---
 
 <h2 align="center"><img src="https://raw.githubusercontent.com/ai-genie/chatgpt-vscode/main/images/ai-logo.png" height="64"><br>A Visual Studio Code - ChatGPT Integration</h2>
 <p align="center"><strong>Prompt OpenAI's GPT-4, GPT-3.5, GPT-3 and Codex models within Visual Studio Code</strong></p>
