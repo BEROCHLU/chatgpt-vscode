@@ -2,6 +2,17 @@
 
 All notable changes to the [ChatGPT](https://marketplace.visualstudio.com/items?itemName=genieai.chatgpt-vscode) extension will be documented in this file.
 
+## [V0.0.13-unofficial.13] 🛠️ Increased git diff buffer limit & default maxTokens - 2026-11-22
+
+### `package.json`
+
+- Updated the default `genieai.openai.maxTokens` (`max_completion_tokens`) value from `32768` to `65536`.
+
+### `out/extension.js`
+
+- Increased the `git diff --cached` fallback `maxBuffer` limit from the Node.js default 1 MB to 8 MB so larger staged diffs can be used for commit message generation.
+- Updated the `ERR_CHILD_PROCESS_STDIO_MAXBUFFER` error message to report the configured 8 MB buffer limit.
+
 ## [V0.0.13-unofficial.12] 🛠️ Added support for GPT-6.2 Astra and Sol - 2026-11-19
 
 ### `package.json`

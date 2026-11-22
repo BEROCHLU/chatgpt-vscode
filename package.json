@@ -399,7 +399,7 @@
 				},
 				"genieai.openai.maxTokens": {
 					"type": "number",
-					"default": 32768,
+					"default": 65536,
 					"markdownDescription": "⚠️ If you receive an HTTP 400 Bad Request, lower your maxTokens setting to allow completion to fulfill your request ⚠️\n\n The maximum number of tokens to generate in the completion.\n\n Choose this number carefully considering the your preferred model's allowed max number of tokens. \n\nThe token count of your prompt plus max_tokens cannot exceed the model's context length. [Documentation](https://beta.openai.com/docs/api-reference/completions/create#completions/create-max_tokens)",
 					"order": 16
 				},
